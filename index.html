@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffafcc, #ffc8dd, #cdb4db);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+            border: 8px solid #ffafcc;
+            transition: transform 0.5s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-10px);
+        }
+        
+        h1 {
+            color: #e63946;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .hearts {
+            font-size: 2.5rem;
+            color: #e63946;
+            margin-bottom: 30px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #yesBtn {
+            background: linear-gradient(to right, #ff5e9a, #e63946);
+            color: white;
+        }
+        
+        #yesBtn:hover {
+            background: linear-gradient(to right, #e63946, #ff5e9a);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
+        }
+        
+        #noBtn {
+            background: linear-gradient(to right, #a8dadc, #457b9d);
+            color: white;
+            position: relative;
+        }
+        
+        #noBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(69, 123, 157, 0.3);
+        }
+        
+        .quote {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #ffafcc;
+            font-style: italic;
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        .accept-message {
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffafcc, #ffc8dd);
+            border-radius: 15px;
+            color: #9d174d;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 1s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(230, 57, 70, 0.7);
+            font-size: 24px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #555;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+        
+        /* For mobile responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+            
+            .buttons {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container" id="mainContainer">
+        <h1>Happy Propose Day! 💖</h1>
+        
+        <div class="hearts">
+            ❤️ 💖 💕
+        </div>
+        
+        <div class="message">
+            <p>Hey Aditi ❤️ 💖</p>
+            <p>You light up my world in ways I never imagined possible. Every moment with you is special, and today I want to ask you something important...</p>
+        </div>
+        
+        <h2>Will you be my Valentine? 🌹</h2>
+        
+        <div class="buttons">
+            <button class="btn" id="yesBtn">Hanji ❤️</button>
+            <button class="btn" id="noBtn">Nahi 😊</button>
+        </div>
+        
+        <div class="quote" id="quote">
+            <i class="fas fa-quote-left"></i> 
+            Arey baba maan jao na! 😍 You know we're perfect together! Think of all the fun we'll have - chocolates, cute dates, and endless laughter! 
+            <i class="fas fa-quote-right"></i>
+        </div>
+        
+        <div class="accept-message" id="acceptMessage">
+            <p>Yayyy! You made me the happiest person today! 🥳</p>
+            <p>I promise to make this Valentine's Day and every day special for you! I love you more than words can say! 💖</p>
+            <div style="font-size: 2rem; margin-top: 10px;">💕🌹🎉</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        Made with <span style="color: #e63946;">❤️</span> for Aditi
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const quote = document.getElementById('quote');
+            const acceptMessage = document.getElementById('acceptMessage');
+            const mainContainer = document.getElementById('mainContainer');
+            const floatingHearts = document.getElementById('floatingHearts');
+            
+            // Create floating hearts
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                floatingHearts.appendChild(heart);
+            }
+            
+            // Nahi button behavior - moves when hovered
+            noBtn.addEventListener('mouseover', function() {
+                moveNoButton();
+            });
+            
+            // Nahi button behavior - when clicked
+            noBtn.addEventListener('click', function() {
+                moveNoButton();
+                showQuote();
+            });
+            
+            // Function to move the "Nahi" button to a random position
+            function moveNoButton() {
+                const containerRect = mainContainer.getBoundingClientRect();
+                const buttonRect = noBtn.getBoundingClientRect();
+                
+                // Calculate maximum positions within the container
+                const maxX = containerRect.width - buttonRect.width - 20;
+                const maxY = containerRect.height - buttonRect.height - 20;
+                
+                // Generate random position within container bounds
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+                
+                // Apply the new position
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = randomX + 'px';
+                noBtn.style.top = randomY + 'px';
+                
+                // Show the quote after moving
+                setTimeout(showQuote, 300);
+            }
+            
+            // Function to show the funny convincing quote
+            function showQuote() {
+                quote.style.display = 'block';
+                
+                // Change the quote text occasionally
+                const quotes = [
+                    "Arey baba maan jao na! 😍 You know we're perfect together! Think of all the fun we'll have - chocolates, cute dates, and endless laughter!",
+                    "Oh come on! If you say yes, I promise to be your personal comedian forever! 😂",
+                    "Imagine all the cute couple photos we could take! Don't make me use puppy eyes... 🥺",
+                    "But who will eat all the Valentine's chocolates with me? Think of the chocolates! 🍫",
+                    "Okay, what if I told you there's a secret reward for saying yes? 🤫",
+                    "They say the best relationships start with a 'Hanji' on Valentine's Day! 🌹",
+                    "Just think about it: you + me + Valentine's Day = Perfect love story! ❤️"
+                ];
+                
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                quote.innerHTML = `<i class="fas fa-quote-left"></i> ${randomQuote} <i class="fas fa-quote-right"></i>`;
+            }
+            
+            // Hanji button behavior - when clicked
+            yesBtn.addEventListener('click', function() {
+                // Hide buttons and quote
+                document.querySelector('.buttons').style.display = 'none';
+                quote.style.display = 'none';
+                
+                // Show acceptance message
+                acceptMessage.style.display = 'block';
+                
+                // Add more floating hearts
+                for (let i = 0; i < 30; i++) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '💖';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDelay = Math.random() * 3 + 's';
+                    heart.style.fontSize = (Math.random() * 25 + 25) + 'px';
+                    heart.style.opacity = Math.random() * 0.7 + 0.3;
+                    floatingHearts.appendChild(heart);
+                }
+                
+                // Change container style for celebration
+                mainContainer.style.background = 'linear-gradient(135deg, #ffc8dd, #ffafcc)';
+                mainContainer.style.border = '8px solid #e63946';
+                
+                // Add celebration text to title
+                document.querySelector('h1').innerHTML = "You Said Yes! 🎉💖";
+                document.querySelector('h2').innerHTML = "Best Valentine's Day Ever! 🌹";
+                
+                // Play a celebration sound (optional)
+                playCelebrationSound();
+            });
+            
+            // Function to play celebration sound
+            function playCelebrationSound() {
+                try {
+                    // Create audio context for celebration sound
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+                    oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+                    oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
+                    
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.5);
+                } catch (e) {
+                    // Audio might not be supported in some browsers
+                    console.log("Celebration sound not supported");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
